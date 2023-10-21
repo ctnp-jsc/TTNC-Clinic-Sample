@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Sample.Domain\Sample.Entities.csproj" />
-    <ProjectReference Include="..\..\Sample.Migrations\Sample.Migrations.csproj" />
+    <ProjectReference Include="..\Sample.Entities\Sample.Entities.csproj" />
+    <ProjectReference Include="..\Sample.Migrations\Sample.Migrations.csproj" />
   </ItemGroup>
 
 </Project>
