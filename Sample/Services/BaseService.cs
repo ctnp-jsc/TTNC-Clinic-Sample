@@ -11,7 +11,7 @@ public abstract class BaseService<T>
 
     protected BaseService(IServiceProvider serviceProvider, ILogger logger)
     {
-        UnitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
+        // UnitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
         Mapper = serviceProvider.GetRequiredService<IMapper>();
         Logger = logger;
     }

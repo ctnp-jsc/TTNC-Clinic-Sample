@@ -1,5 +1,6 @@
 @page "/counter"
-
+@using Sample.Services
+@inject FormService FormService
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
@@ -11,8 +12,9 @@
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+    private async Task IncrementCount()
     {
         currentCount++;
+        await FormService.CreateForm(new ViewModels.FormViewModel(){Title = "test"});
     }
 }
