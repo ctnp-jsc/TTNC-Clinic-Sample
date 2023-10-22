@@ -9,6 +9,8 @@ namespace Sample.Entities.Models
     {
         public string? Answer { get; set; }
         public bool ExtraAnswer { get; set; }
+        public int Order { get; set; }
+        public string QuestionId { get; set; } = default!;
         public QuestionEntity Question { get; set;} = default!;
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
