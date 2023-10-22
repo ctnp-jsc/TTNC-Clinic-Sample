@@ -1,47 +1,71 @@
-@page "/fetchdata"
-@using Sample.Data
-@inject WeatherForecastService ForecastService
+@page "/form_list"
+@using Sample.ViewModels
+@using Sample.Services
+@inject FormService FormService
+@inject NavigationManager NavManager
+<PageTitle>Form List</PageTitle>
 
-<PageTitle>Weather forecast</PageTitle>
+<h1>Form List</h1>
 
-<h1>Weather forecast</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
 
-@if (forecasts == null)
+@if (listForm == null)
+
 {
-    <p><em>Loading...</em></p>
+  <p><em>Loading...</em></p>
 }
+
 else
+
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+  <div class="col button-top">
+    <a href="" onclick="@CreateNewForm" class="btn btn-success">+ Create New</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr >
+        <th>Date</th>
+        <th>Last Edited</th>
+        <th>Title</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var form in listForm)
+
+      {
+        <tr @onclick="(()=>OnClickRowForm(form.Id))">
+          <td>@form.CreatedAt</td>
+          <td>@form.LastEdited</td>
+          <td>@form.Title</td>
+          <td>@form.FormStatus</td>
+        </tr>
+      }
+    </tbody>
+  </table>
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+  private List<FormViewModel>? listForm;
 
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await ForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
-    }
+
+
+  protected override async Task OnInitializedAsync()
+
+  {
+
+    listForm = await FormService.GetListForm();
+
+  }
+
+  private async Task CreateNewForm()
+
+  {
+
+    var form = await FormService.CreateForm(new ViewModels.FormViewModel() { Title = "Health Risk Assessment" });
+    NavManager.NavigateTo($"/formcreate/{form.Id}");
+  }
+  private void OnClickRowForm(string formId){
+    NavManager.NavigateTo($"/formcreate/{formId}");
+  }
 }

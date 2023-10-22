@@ -1,0 +1,115 @@
+@page "/formcreate/{FormId}"
+@using Sample.Entities.Models
+@using Sample.Services
+@using Sample.ViewModels
+@inject FormService FormService
+
+<PageTitle>Health Risk Assessment </PageTitle>
+
+<h1>Health Risk Assessment </h1>
+
+@if (Form == null)
+
+{
+    <p><em>Loading...</em></p>
+}
+
+else
+{
+    var questions = Form.Questions.OrderBy(e => e.Order);
+
+    var cate = new QuestionCategory();
+    <EditForm Model="@Form">
+        @foreach (var question in questions)
+        {
+            if (question.QuestionCategory != cate.Category && question.QuestionCategoryDescription != cate.CategoryDescription)
+            {
+                cate.Category = question.QuestionCategory;
+                cate.CategoryDescription = question.QuestionCategoryDescription;
+                @if (@cate.Category != null && @cate.Category != "")
+                {
+                    <span>@cate.Category</span>
+                    @if (@cate.CategoryDescription != null && @cate.CategoryDescription != "")
+                    {
+                        <span> (@cate.CategoryDescription)</span>
+                    }
+                }
+            }
+            <div class="question">
+                <p>@question.QuestionText</p>
+                @if (question.QuestionType == QuestionType.SingleOpen || question.QuestionType == QuestionType.Single)
+                {
+                    @foreach (var answer in question.Answers)
+
+                    {
+                        <div>
+                            <input type="radio" id="@answer.Id" name="question-@question.Id" onblur="@HandleBlur"
+                                   onclick="showTextInput(@answer.Id, @answer.ExtraAnswer)" />
+                            <label for="@answer.Id">@answer.Answer</label>
+                            <input type="text" id="extra-answer-@answer.Id" name="extra-answer-@answer.Id" placeholder="Enter extra answer"
+                                   style="display: none;" />
+                        </div>
+                    }
+                }
+                else if (question.QuestionType == QuestionType.MultipleOpen || question.QuestionType == QuestionType.Multiple)
+                {
+                    @foreach (var answer in question.Answers)
+
+                    {
+                        <div>
+                            <input type="checkbox" id="@answer.Id" name="question-@question.Id" value="@answer.Id" />
+                            <label for="@answer.Id">@answer.Answer</label>
+                        </div>
+                    }
+                }
+                else if (question.QuestionType == QuestionType.Info)
+                {
+                    @foreach (var answer in question.Answers)
+                    {
+                        @if (question.QuestionDataType == QuestionDataType.Boolean)
+                        {
+                            <div>
+                                <input type="radio" id="@answer.Id" name="question-@question.Id" value="@answer.Id" />
+                                <label for="@answer.Id">@answer.Answer</label>
+                            </div>
+                        }
+                        else if (question.QuestionDataType == QuestionDataType.Date)
+                        {
+                            <input type="date" id="@answer.Id" name="question-@question.Id" value="@answer.Id" />
+                        }
+                        else
+                        {
+                            <div>
+                                <input type="text" id="@answer.Id" name="question-@question.Id" value="@answer.Answer" />
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        }
+        <button type="submit">Submit</button>
+    </EditForm>
+
+}
+
+@code {
+    [Parameter]
+    public string FormId { set; get; }
+    private FormEntity? Form;
+    private List<QuestionCategory> CategoryQuestion;
+    protected override async Task OnInitializedAsync()
+    {
+        Form = await FormService.GetFormDetail(FormId);
+        CategoryQuestion = Form!.Questions.GroupBy(e => e.QuestionCategory).Select(e => new QuestionCategory()
+            {
+                Category = e.Key,
+                CategoryDescription = e.Select(a => a.QuestionCategoryDescription).FirstOrDefault()
+            }).ToList();
+    }
+
+    protected void HandleBlur()
+    {
+
+    }
+
+}

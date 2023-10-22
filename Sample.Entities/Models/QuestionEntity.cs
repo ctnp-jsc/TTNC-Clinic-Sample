@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace Sample.Entities.Models
 {
-    public enum QuestionType {
+
+    public enum QuestionType
+    {
         Info,
         Multiple,
         Single,
@@ -13,11 +15,24 @@ namespace Sample.Entities.Models
         MultipleOpen,
         SingleOpen
     }
+    public enum QuestionDataType
+    {
+        Text,
+        Date,
+        Boolean
+    }
     public class QuestionEntity : IdEntity, IAuditEntity, ISoftDelete
     {
         public string QuestionText { get; set; } = default!;
+        public string? QuestionCategory { get; set; }
+        public string? QuestionCategoryDescription { get; set; }
+        public string FormId { get; set; } = default!;
+        public int Order { get; set; }
+        public bool IsMandatory { get; set; } = false;
         public QuestionType QuestionType { get; set; } = default!;
         public FormEntity Form { get; set; } = default!;
+        public QuestionDataType QuestionDataType { get; set; } = QuestionDataType.Text;
+        public ICollection<AnswerEntity> Answers { get; set; } = default!;
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
         public string? CreatedBy { get; set; }

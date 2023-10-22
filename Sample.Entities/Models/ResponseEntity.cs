@@ -10,6 +10,7 @@ namespace Sample.Entities.Models
         public int Version { get; set; }
         public bool IsSubmitted { get; set; }
         public UserEntity User { get; set; } = default!;
+        public List<ResponseDetailEntity> ResponseDetail { get; set; } = default!;
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
         public string? CreatedBy { get; set; }
