@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Sample.Entities.Models;
+using Sample.Reports;
 using Sample.Repositories;
 using Sample.ViewModels;
 
@@ -135,6 +132,18 @@ namespace Sample.Services
                 form.DeletedBy = "";
                 await Repository.UpdateAsync(form, ct);
                 await UnitOfWork.SaveChangesAsync(ct);
+            }
+        }
+
+        public async Task ExportAsync(string formId, Stream stream, CancellationToken ct = default)
+        {
+            var responses = await _reponseRepository.FindManyAsync(e => e.FormId == formId, ct);
+            var response = responses.OrderByDescending(e => e.Version).FirstOrDefault();
+            if (response != null)
+            {
+                var report = new SampleReport();
+                report.Parameters["responseId"].Value = response.Id;
+                await report.ExportToPdfAsync(stream, null, ct);
             }
         }
     }

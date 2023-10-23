@@ -1,9 +1,11 @@
 @page "/forms"
 @attribute [Authorize]
+@using Sample.Utils;
 @using Sample.ViewModels
 @using Sample.Services
 @inject FormService FormService
 @inject NavigationManager NavManager
+@inject Microsoft.JSInterop.IJSRuntime JS
 <PageTitle>Form List</PageTitle>
 
 <h1>Form List</h1>
@@ -72,48 +74,52 @@ else
 }
 
 @code {
-  private List<FormViewModel>? listForm;
-  private bool showDeleteConfirmation = false;
-  private string formIdToDelete;
+    private List<FormViewModel>? listForm;
+    private bool showDeleteConfirmation = false;
+    private string formIdToDelete;
 
 
 
-  protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
 
-  {
+    {
 
-    listForm = await FormService.GetListForm();
+        listForm = await FormService.GetListForm();
 
-  }
+    }
 
-  private async Task CreateNewForm()
-  {
-    var form = await FormService.CreateForm(new ViewModels.FormViewModel() { Title = "Health Risk Assessment" });
-    NavManager.NavigateTo($"/formcreate/{form.Id}");
-  }
-  private void OnClickRowForm(string formId)
-  {
-    NavManager.NavigateTo($"/formcreate/{formId}");
-  }
+    private async Task CreateNewForm()
+    {
+        var form = await FormService.CreateForm(new ViewModels.FormViewModel() { Title = "Health Risk Assessment" });
+        NavManager.NavigateTo($"/formcreate/{form.Id}");
+    }
+    private void OnClickRowForm(string formId)
+    {
+        NavManager.NavigateTo($"/formcreate/{formId}");
+    }
 
-  private async Task ExportForm (string FormId){
+    private async Task ExportForm (string formId)
+    {
+        using var stream = new MemoryStream();
+        await FormService.ExportAsync(formId, stream);
+        await JS.SaveAs("Form.pdf", stream.ToArray());
+    }
 
-  }
-  private void DeleteForm(string FormId)
-  {
-      formIdToDelete = FormId;
-      showDeleteConfirmation = true;
-  }
-  private void CloseDeleteConfirmation()
-{
-    showDeleteConfirmation = false;
-}
+    private void DeleteForm(string FormId)
+    {
+        formIdToDelete = FormId;
+        showDeleteConfirmation = true;
+    }
 
-private async void ConfirmDelete()
-{
-    await FormService.DeleteForm(formIdToDelete);
-    listForm = await FormService.GetListForm();
-    showDeleteConfirmation = false;
-}
+    private void CloseDeleteConfirmation()
+    {
+        showDeleteConfirmation = false;
+    }
 
+    private async void ConfirmDelete()
+    {
+        await FormService.DeleteForm(formIdToDelete);
+        listForm = await FormService.GetListForm();
+        showDeleteConfirmation = false;
+    }
 }
