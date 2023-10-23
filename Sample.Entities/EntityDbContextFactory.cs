@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Sample.Entities;
 
-namespace Ulrich.Micro.PWPay.API.Entities;
+namespace Sample.Entities;
 
 public class EntityDbContextFactory : IDbContextFactory<EntityDbContext>
 {

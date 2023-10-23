@@ -3,9 +3,10 @@ using Sample.Entities.Models;
 
 namespace Sample.Entities;
 
-public class EntityDbContext : DbContext, IUnitOfWork
+public class EntityDbContext : DbContext
 {
     public IUserService? UserService { get; internal set; }
+
     public DbSet<AnswerEntity> Answers { get; set; } = default!;
     public DbSet<FormEntity> HRMForms { get; set; } = default!;
     public DbSet<QuestionEntity> Questions { get; set; } = default!;

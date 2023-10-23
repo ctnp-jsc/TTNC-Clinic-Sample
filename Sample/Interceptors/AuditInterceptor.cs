@@ -7,11 +7,11 @@ namespace Sample.Interceptors;
 
 public sealed class AuditInterceptor : SaveChangesInterceptor
 {
-    public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
+    public override async ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken ct = default)
     {
         if (eventData.Context is EntityDbContext context)
         {
-            var userId = context.UserService?.CurrentUser;
+            var userId = context.UserService is null ? null : await context.UserService.GetCurrentUserAsync();
 
             // Add Created/Updated User/Date
             context.ChangeTracker.Entries()
@@ -32,6 +32,6 @@ public sealed class AuditInterceptor : SaveChangesInterceptor
                     }
                 });
         }
-        return base.SavingChangesAsync(eventData, result, cancellationToken);
+        return await base.SavingChangesAsync(eventData, result, ct);
     }
 }

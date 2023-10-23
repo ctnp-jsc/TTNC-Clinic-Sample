@@ -3,7 +3,7 @@ using Sample.Entities;
 
 namespace Sample.Services;
 
-public abstract class BaseService<T>
+public abstract class BaseService
 {
     protected IUnitOfWork UnitOfWork { get; }
     protected IMapper Mapper { get; }
@@ -11,7 +11,7 @@ public abstract class BaseService<T>
 
     protected BaseService(IServiceProvider serviceProvider, ILogger logger)
     {
-        // UnitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
+        UnitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
         Mapper = serviceProvider.GetRequiredService<IMapper>();
         Logger = logger;
     }

@@ -4,7 +4,7 @@ using Sample.Repositories;
 
 namespace Sample.Services;
 
-public abstract class BaseEntityService<TEntity, TRepository> : BaseService<TEntity> where TRepository : notnull
+public abstract class BaseEntityService<TEntity, TRepository> : BaseService where TRepository : notnull
 {
     protected readonly TRepository Repository;
 
