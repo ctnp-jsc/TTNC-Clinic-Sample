@@ -9,8 +9,7 @@ namespace Sample.Entities.Models
     public class ResponseDetailEntity : IdEntity, IAuditEntity, ISoftDelete
     {
         public ResponseEntity Response { get; set; } = default!;
-        public AnswerEntity Answer { get; set; } = default!;
-        public FormEntity Form { get; set; } = default!;
+        public AnswerEntity? Answer { get; set; }
         public string ResponseId { get; set; }  = default!;
         public string? ExtraAnswer { get; set; }
         public DateTimeOffset CreatedAt { get; set; }

@@ -8,6 +8,5 @@ namespace Sample.Repositories
 {
     public interface IResponseDetailRepository : ICrudEntityRepository<ResponseDetailEntity>, IQueryRepository<ResponseDetailEntity>
     {
-        public Task<List<ResponseDetailEntity>> GetResponsesDetailByFormId(string FormId, CancellationToken ct = default);
     }
 }

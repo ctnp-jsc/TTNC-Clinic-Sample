@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sample.Entities;
 
@@ -11,9 +12,11 @@ using Sample.Entities;
 namespace Sample.Migrations.Migrations
 {
     [DbContext(typeof(EntityDbContext))]
-    partial class EntityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231023022933_Update_Db_skeleton_2")]
+    partial class Update_Db_skeleton_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,6 +169,7 @@ namespace Sample.Migrations.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AnswerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTimeOffset>("CreatedAt")
@@ -310,7 +314,9 @@ namespace Sample.Migrations.Migrations
                 {
                     b.HasOne("Sample.Entities.Models.AnswerEntity", "Answer")
                         .WithMany()
-                        .HasForeignKey("AnswerId");
+                        .HasForeignKey("AnswerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Sample.Entities.Models.ResponseEntity", "Response")
                         .WithMany("ResponseDetail")
@@ -326,9 +332,9 @@ namespace Sample.Migrations.Migrations
             modelBuilder.Entity("Sample.Entities.Models.ResponseEntity", b =>
                 {
                     b.HasOne("Sample.Entities.Models.FormEntity", "Form")
-                        .WithMany("Response")
+                        .WithMany()
                         .HasForeignKey("FormId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Sample.Entities.Models.UserEntity", "User")
@@ -343,8 +349,6 @@ namespace Sample.Migrations.Migrations
             modelBuilder.Entity("Sample.Entities.Models.FormEntity", b =>
                 {
                     b.Navigation("Questions");
-
-                    b.Navigation("Response");
                 });
 
             modelBuilder.Entity("Sample.Entities.Models.QuestionEntity", b =>

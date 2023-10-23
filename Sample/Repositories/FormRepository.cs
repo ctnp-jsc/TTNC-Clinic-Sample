@@ -25,7 +25,7 @@ namespace Sample.Repositories
         }
         public async Task<List<FormEntity>?> GetListFrom(CancellationToken ct = default)
         {
-            return await _context.Forms.Include(e=>e.Questions).ToListAsync(ct);
+            return await _context.Forms.Where(e=>e.DeletedBy == null).Include(e=>e.Questions).ToListAsync(ct);
         }
     }
 }

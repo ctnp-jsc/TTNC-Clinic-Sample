@@ -13,9 +13,6 @@ namespace Sample.Repositories
             _context = serviceProvider.GetRequiredService<EntityDbContext>();
         }
 
-        public async Task<List<ResponseDetailEntity>> GetResponsesDetailByFormId(string FormId, CancellationToken ct = default)
-        {
-            return await GetQueryable().Where(e=>e.Form.Id == FormId).ToListAsync();
-        }
+
     }
 }

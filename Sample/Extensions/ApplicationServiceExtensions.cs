@@ -40,13 +40,15 @@ public static class ApplicationServiceExtensions
     }
 
     public static IServiceCollection AddRepositories(this IServiceCollection @this) => @this
-        .AddScoped<IFormRepository, FormRepository>();
+        .AddScoped<IFormRepository, FormRepository>()
+        .AddScoped<IResponseRepository, ResponseRepository>();
 
     public static IServiceCollection AddServices(this IServiceCollection @this) => @this
         .AddScoped<IConnectionProviderFactory, ConnectionProviderFactory>()
         .AddScoped<IConnectionProviderService, ConnectionProviderService>()
         .AddScoped<IUnitOfWork, UnitOfWork<EntityDbContext>>()
         .AddScoped<IUserService, UserService>()
-        .AddScoped<FormService>();
+        .AddScoped<FormService>()
+        .AddScoped<ResponseService>();
 
 }

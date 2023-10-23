@@ -3,113 +3,202 @@
 @using Sample.Services
 @using Sample.ViewModels
 @inject FormService FormService
+@inject ResponseService ResponseService
 
-<PageTitle>Health Risk Assessment </PageTitle>
+<div class="container">
+    <a href="/" class="back-button ">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <PageTitle>Health Risk Assessment</PageTitle>
 
-<h1>Health Risk Assessment </h1>
+    <h1>Health Risk Assessment</h1>
 
-@if (Form == null)
-
-{
-    <p><em>Loading...</em></p>
-}
-
-else
-{
-    var questions = Form.Questions.OrderBy(e => e.Order);
-
-    var cate = new QuestionCategory();
-    <EditForm Model="@Form">
-        @foreach (var question in questions)
-        {
-            if (question.QuestionCategory != cate.Category && question.QuestionCategoryDescription != cate.CategoryDescription)
+    @if (Form == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        var cate = new QuestionCategory();
+        <EditForm Model="Form" OnSubmit="@OnSubmit" class="form">
+            @foreach (var question in Form.Questions.OrderBy(e => e.Order))
             {
-                cate.Category = question.QuestionCategory;
-                cate.CategoryDescription = question.QuestionCategoryDescription;
-                @if (@cate.Category != null && @cate.Category != "")
-                {
-                    <span>@cate.Category</span>
-                    @if (@cate.CategoryDescription != null && @cate.CategoryDescription != "")
+                    @if (question.QuestionCategory != cate.Category || question.QuestionCategoryDescription != cate.CategoryDescription)
                     {
-                        <span> (@cate.CategoryDescription)</span>
+                        cate.Category = question?.QuestionCategory;
+                        cate.CategoryDescription = question?.QuestionCategoryDescription;
+                        @if (cate.Category != null && cate.Category != "")
+                        {
+                          <div class="font-italic">
+                              <h5 style="display: inline-block; margin-top: 12px; margin-bottom: 0;">@cate.Category</h5>
+                              @if (cate.CategoryDescription != null && cate.CategoryDescription != "")
+                              {
+                                  <span style="margin-left: 4px">(@cate.CategoryDescription)</span>
+                              }
+                          </div>
+                        }
                     }
-                }
+                <div class="form-group mb-2 mt-2">
+                    <div class="question">
+                        <b>@question.QuestionText</b>
+                        @if (question.QuestionType == QuestionType.SingleOpen || question.QuestionType == QuestionType.Single)
+                        {
+                            <div class="row mt-1">
+                                @foreach (var answer in question.Answers.OrderBy(e => e.Order))
+                                {
+                                    <div class="form-check col-6">
+                                        <input type="radio"
+                                        value="@answer.Id"
+                                        @onchange="@(e => HandleChange(question, answer, e))" checked="@answer.IsSelected"
+                                        name="@question.Id"
+                                        id="@answer.Id"
+                                        class="form-check-input" />
+                                        <label for="@answer.Id" class="form-check-label">@answer.Answer</label>
+                                        @if (answer.ExtraAnswer)
+                                        {
+                                            <InputText  id="@answer.Id" @bind-Value="answer.ExtraAnswerText" class="form-control" />
+                                        }
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else if (question.QuestionType == QuestionType.MultipleOpen || question.QuestionType == QuestionType.Multiple)
+                        {
+                            <div class="row mt-1">
+                                @foreach (var answer in question.Answers.OrderBy(e => e.Order))
+                                {
+                                    <div class="form-check col-6 pl-9">
+                                        <input
+                                        @bind="answer.IsSelected"
+                                        type="checkbox" id="@answer.Id" name="question-@question.Id" class="form-check-input" />
+                                        <label for="@answer.Id" class="form-check-label">@answer.Answer</label>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else if (question.QuestionType == QuestionType.Info)
+                        {
+                            <div class="row mt-1">
+                                @foreach (var answer in question.Answers.OrderBy(e => e.Order))
+                                {
+                                    @if (question.QuestionDataType == QuestionDataType.Boolean)
+                                    {
+                                        <div class="form-check col-6 pl-9">
+                                             <input
+                                              name="@question.Id"
+                                              value="@answer.Id"
+                                              @onchange="@(e => HandleChange(question, answer, e))" checked="@answer.IsSelected"
+                                              type="radio" id="@answer.Id"  class="form-check-input" />
+                                            <label for="@answer.Id">@answer.Answer</label>
+                                        </div>
+
+                                    }
+                                    else if (question.QuestionDataType == QuestionDataType.Date)
+                                    {
+                                        <div class="form-group col-6">
+                                            <InputText id="@answer.Id"  @bind-Value="answer.Answer" class="form-control" />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group col-6">
+                                            <InputText  id="@answer.Id" @bind-Value="answer.Answer" class="form-control" />
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
             }
-            <div class="question">
-                <p>@question.QuestionText</p>
-                @if (question.QuestionType == QuestionType.SingleOpen || question.QuestionType == QuestionType.Single)
-                {
-                    @foreach (var answer in question.Answers)
-
-                    {
-                        <div>
-                            <input type="radio" id="@answer.Id" name="question-@question.Id" onblur="@HandleBlur"
-                                   onclick="showTextInput(@answer.Id, @answer.ExtraAnswer)" />
-                            <label for="@answer.Id">@answer.Answer</label>
-                            <input type="text" id="extra-answer-@answer.Id" name="extra-answer-@answer.Id" placeholder="Enter extra answer"
-                                   style="display: none;" />
-                        </div>
-                    }
-                }
-                else if (question.QuestionType == QuestionType.MultipleOpen || question.QuestionType == QuestionType.Multiple)
-                {
-                    @foreach (var answer in question.Answers)
-
-                    {
-                        <div>
-                            <input type="checkbox" id="@answer.Id" name="question-@question.Id" value="@answer.Id" />
-                            <label for="@answer.Id">@answer.Answer</label>
-                        </div>
-                    }
-                }
-                else if (question.QuestionType == QuestionType.Info)
-                {
-                    @foreach (var answer in question.Answers)
-                    {
-                        @if (question.QuestionDataType == QuestionDataType.Boolean)
-                        {
-                            <div>
-                                <input type="radio" id="@answer.Id" name="question-@question.Id" value="@answer.Id" />
-                                <label for="@answer.Id">@answer.Answer</label>
-                            </div>
-                        }
-                        else if (question.QuestionDataType == QuestionDataType.Date)
-                        {
-                            <input type="date" id="@answer.Id" name="question-@question.Id" value="@answer.Id" />
-                        }
-                        else
-                        {
-                            <div>
-                                <input type="text" id="@answer.Id" name="question-@question.Id" value="@answer.Answer" />
-                            </div>
-                        }
-                    }
-                }
+            <div class="mt-4">
+              <button type="submit" class="btn btn-primary">@(Version == 0 ? "Submit" : "Save")</button>
+              <button type="submit" class="btn btn-primary">Export Report</button>
             </div>
-        }
-        <button type="submit">Submit</button>
-    </EditForm>
+        </EditForm>
+    }
+</div>
 
-}
+
 
 @code {
     [Parameter]
     public string FormId { set; get; }
     private FormEntity? Form;
-    private List<QuestionCategory> CategoryQuestion;
+    public int Version { get; set; }
+    private ResponseEntity? Response;
+    private List<ResponseDetailEntity> ResponseDetails;
+    private List<string> selectedAnswers = new List<string>();
     protected override async Task OnInitializedAsync()
     {
         Form = await FormService.GetFormDetail(FormId);
-        CategoryQuestion = Form!.Questions.GroupBy(e => e.QuestionCategory).Select(e => new QuestionCategory()
-            {
-                Category = e.Key,
-                CategoryDescription = e.Select(a => a.QuestionCategoryDescription).FirstOrDefault()
-            }).ToList();
+        Response = await ResponseService.GetResponseByFormId(FormId);
+        var allAnswer = Form.Questions.SelectMany(e=>e.Answers);
+        if (Response != null){
+          Version = Response.Version;
+          var allAnswerResponse = Response.ResponseDetail;
+          foreach (var ans in allAnswer){
+            foreach( var ansRes in allAnswerResponse){
+              if (ans.Id == ansRes.Answer.Id){
+                ans.Answer = ansRes.Answer.Answer;
+                ans.ExtraAnswer = ansRes.Answer.ExtraAnswer;
+                ans.ExtraAnswerText = ansRes.ExtraAnswer;
+                ans.IsSelected = true;
+              }
+            }
+          }
+
+        }
     }
 
-    protected void HandleBlur()
+    protected void OnReport(){
+
+    }
+    protected void OnSaveForm(){
+
+    }
+    protected void OnSubmitForm(){
+
+    }
+    protected void OnSubmit(){
+      var allQuestion = Form!.Questions?.ToList();
+      var textDateAnswer = allQuestion.Where(e=>e.QuestionType == QuestionType.Info || e.QuestionType == QuestionType.Open).SelectMany(q=>q.Answers).Where(a=>a.ExtraAnswer).Select(e=> new ResponseDetailEntity(){
+        ExtraAnswer = e.Answer,
+        Answer = e,
+        Response = null,
+        ResponseId = null
+      }).ToList();
+      var selectionAnswer = allQuestion.SelectMany(q=>q.Answers).Where(e=>e.IsSelected && !e.ExtraAnswer).Select(e=> new ResponseDetailEntity(){
+        Answer = e,
+        Response = null,
+        ResponseId = null
+      }).ToList();
+      var selectionOtherAnswer = allQuestion.Where(e=>e.QuestionType == QuestionType.MultipleOpen || e.QuestionType == QuestionType.SingleOpen).SelectMany(q=>q.Answers).Where(e=>e.IsSelected && e.ExtraAnswer).Select(e=> new ResponseDetailEntity(){
+        ExtraAnswer = e.ExtraAnswerText,
+        Answer = e,
+        Response = null,
+        ResponseId = null
+      }).ToList();
+
+
+      Response = new ResponseEntity();
+      Response.Id = null;
+      Response.Version = Version+1;
+      Response.ResponseDetail = textDateAnswer.Concat(selectionAnswer).Concat(selectionOtherAnswer).ToList();
+      Response.Form = Form;
+      Response.IsSubmitted = true;
+      ResponseService.CreateResponse(Response);
+
+
+    }
+    private void HandleChange(QuestionEntity question, AnswerEntity answer, ChangeEventArgs e)
     {
-
+      if (question.QuestionType == QuestionType.Single || question.QuestionType == QuestionType.SingleOpen || question.QuestionDataType == QuestionDataType.Boolean){
+        foreach(var ans in question.Answers){
+          ans.IsSelected = false;
+        }
+      }
+      answer.IsSelected = true;
     }
-
 }
