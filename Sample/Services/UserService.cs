@@ -1,15 +1,21 @@
+using Microsoft.AspNetCore.Components.Authorization;
 using Sample.Entities;
+using System.Security.Claims;
 
 namespace Sample.Services;
 
 public class UserService : IUserService
 {
-    public UserService()
+    private readonly AuthenticationStateProvider stateProvider;
+
+    public UserService(AuthenticationStateProvider stateProvider)
     {
+        this.stateProvider = stateProvider;
     }
 
-    public Task<string?> GetCurrentUserAsync()
+    public async Task<string?> GetCurrentUserAsync()
     {
-        throw new NotImplementedException();
+        var state = await stateProvider.GetAuthenticationStateAsync();
+        return state.User?.FindFirst(ClaimTypes.Name)?.Value;
     }
 }
