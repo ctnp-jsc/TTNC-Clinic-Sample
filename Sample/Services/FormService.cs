@@ -22,8 +22,8 @@ namespace Sample.Services
             var response = await _reponseRepository.FindManyAsync(e => true, ct);
             foreach (var form in listForm)
             {
-                var rs = response.Where(e => e.ResponseDetail.Any(detail => detail.Form == form)).ToList();
-                var maxRs = rs.OrderByDescending(entity => entity.Version).LastOrDefault();
+                var rs = response.Where(e => e.Form == form).ToList();
+                var maxRs = rs.OrderByDescending(entity => entity.Version).FirstOrDefault();
                 listFormView.Add(new()
                 {
                     Id = form.Id,
@@ -55,7 +55,7 @@ namespace Sample.Services
                     Order = 1,
                     IsMandatory = true,
                     Answers = new List<AnswerEntity>(){
-                        new(){Answer = ""}
+                        new(){Answer = "" , ExtraAnswer = true}
                     }
                 },
                 new(){
@@ -64,7 +64,7 @@ namespace Sample.Services
                     Order = 2,
                     IsMandatory = true,
                     Answers = new List<AnswerEntity>(){
-                        new(){Answer = ""}
+                        new(){Answer = "", ExtraAnswer = true}
                     }
                 },
                 new(){
@@ -74,7 +74,7 @@ namespace Sample.Services
                     IsMandatory = true,
                     QuestionDataType = QuestionDataType.Date,
                     Answers = new List<AnswerEntity>(){
-                        new(){Answer = ""}
+                        new(){Answer = "", ExtraAnswer = true}
                     }
                 },
                 new(){
@@ -84,7 +84,7 @@ namespace Sample.Services
                     IsMandatory = true,
                     QuestionDataType = QuestionDataType.Boolean,
                     Answers = new List<AnswerEntity>(){
-                        new(){Answer = "Male"},
+                        new(){Answer = "Male", IsSelected=true},
                         new(){Answer = "Female"}
                     }
                 },
@@ -125,7 +125,18 @@ namespace Sample.Services
 
             };
             form.Questions = questionList;
-            return await Repository.AddFormAsync(form, ct);
+            var formCreat = await Repository.AddFormAsync(form, ct);
+            return formCreat;
+        }
+        public async Task DeleteForm(string FormId, CancellationToken ct = default)
+        {
+            var form = await Repository.GetFromDetail(FormId, ct);
+            if (form != null){
+                form.DeletedBy = "";
+                await Repository.UpdateAsync(form, ct);
+                await UnitOfWork.SaveChangesAsync(ct);
+            }
         }
     }
+
 }

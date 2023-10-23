@@ -39,5 +39,11 @@ public class EntityDbContext : DbContext
         .WithOne(e => e.Response).
         HasForeignKey(a => a.ResponseId)
         .OnDelete(DeleteBehavior.NoAction);
+
+        builder.Entity<FormEntity>()
+        .HasMany(e => e.Response)
+        .WithOne(e => e.Form).
+        HasForeignKey(a => a.FormId)
+        .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -10,6 +10,7 @@ namespace Sample.Entities.Models
         public string Title { get; set; } = default!;
         public string? Description { get; set; }
         public ICollection<QuestionEntity> Questions { get; set; } = default!;
+        public ICollection<ResponseEntity> Response { get; set; } = default!;
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
         public string? CreatedBy { get; set; }
