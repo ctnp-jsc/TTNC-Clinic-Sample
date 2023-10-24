@@ -10,4 +10,7 @@ public static class ConfigurationExtensions
 
     public static string GetReportConnection(this IConfiguration configuration) =>
         configuration["ConnectionStrings:Connection"] ?? throw new Exception("[ConnectionStrings:Connection] config is missing");
+
+    public static bool IsUnderProxy(this IConfiguration configuration) =>
+        configuration.GetValue<bool>("UnderProxy");
 }
