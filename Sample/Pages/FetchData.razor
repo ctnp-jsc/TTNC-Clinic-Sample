@@ -8,7 +8,7 @@
 @inject Microsoft.JSInterop.IJSRuntime JS
 <PageTitle>Form List</PageTitle>
 
-<h1>Form List</h1>
+<h1>Health Risk Assessment Form List</h1>
 
 
 
@@ -22,14 +22,14 @@ else
 
 {
   <div class="col button-top">
-    <a href="" onclick="@CreateNewForm" class="btn btn-success">+ Create New</a>
+    <a href="" onclick="@CreateNewForm" class="btn btn-success float-end">+ Create New</a>
   </div>
   <table class="table">
     <thead>
       <tr>
-        <th>Date</th>
+        <th>Created Date</th>
         <th>Last Edited</th>
-        <th>Title</th>
+        <th>Created By</th>
         <th>Status</th>
         <th>Action</th>
       </tr>
@@ -39,14 +39,19 @@ else
 
       {
         <tr >
-          <td @onclick="(()=>OnClickRowForm(form.Id))">@form.CreatedAt</td>
-          <td @onclick="(()=>OnClickRowForm(form.Id))">@form.LastEdited</td>
-          <td @onclick="(()=>OnClickRowForm(form.Id))">@form.Title</td>
-          <td @onclick="(()=>OnClickRowForm(form.Id))">@form.FormStatus</td>
+          <td @onclick="(()=>OnClickRowForm(form.Id))">@form.CreatedAt.ToString("MM/dd/yyyy HH:mm:ss")</td>
+          <td @onclick="(()=>OnClickRowForm(form.Id))">@form.LastEdited.ToString("MM/dd/yyyy HH:mm:ss")</td>
+          <td @onclick="(()=>OnClickRowForm(form.Id))">@form.CreatedBy</td>
+          <td @onclick="(()=>OnClickRowForm(form.Id))">@RenderStatus(form.FormStatus.ToString())</td>
           <td>
-            <a href="javascript:void(0);" @onclick="()=>DeleteForm(form.Id)"><i class="fas fa-trash-alt"></i></a>
-            <a href="javascript:void(0);" @onclick="()=>ExportForm(form.Id)" style="margin-left: 12px;"><i class="fas fa-file-export"></i></a>
+            <a href="javascript:void(0);" @onclick="()=>DeleteForm(form.Id)" data-toggle="tooltip" title="Delete this form">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+            <a href="javascript:void(0);" @onclick="()=>ExportForm(form.Id)" style="margin-left: 12px;" data-toggle="tooltip" title="Report this form">
+                <i class="fas fa-file-export"></i>
+            </a>
           </td>
+
         </tr>
       }
     </tbody>
@@ -78,8 +83,6 @@ else
     private bool showDeleteConfirmation = false;
     private string formIdToDelete;
 
-
-
     protected override async Task OnInitializedAsync()
 
     {
@@ -90,7 +93,7 @@ else
 
     private async Task CreateNewForm()
     {
-        var form = await FormService.CreateForm(new ViewModels.FormViewModel() { Title = "Health Risk Assessment" });
+        var form = await FormService.CreateForm(new ViewModels.FormViewModel() { Title = "Health Risk Assessment"});
         NavManager.NavigateTo($"/formcreate/{form.Id}");
     }
     private void OnClickRowForm(string formId)
@@ -121,5 +124,18 @@ else
         await FormService.DeleteForm(formIdToDelete);
         listForm = await FormService.GetListForm();
         showDeleteConfirmation = false;
+    }
+    private string RenderStatus(string FormStatus)
+    {
+        string rs = FormStatus;
+        switch (FormStatus)
+        {
+            case "FillOut":
+                rs = "Filled Out";
+                break;
+            default:
+                break;
+        };
+        return rs;
     }
 }
