@@ -1,4 +1,5 @@
 using Auth0.AspNetCore.Authentication;
+using Blazored.Toast;
 using DevExpress.DataAccess.Web;
 using DevExpress.DataAccess.Wizard.Services;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +36,7 @@ public static class ApplicationServiceExtensions
         });
 
         @this.AddRepositories().AddServices();
-
+        @this.AddBlazoredToast();
         return @this;
     }
 

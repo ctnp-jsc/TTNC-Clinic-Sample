@@ -2,11 +2,16 @@
 @using Sample.Entities.Models
 @using Sample.Services
 @using Sample.ViewModels
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Blazored.Toast.Configuration
 @inject FormService FormService
 @inject ResponseService ResponseService
+@inject IToastService toastService
+
 
 <div class="container">
-    <a href="/" class="back-button ">
+    <a href="/forms" class="back-button ">
         <i class="fas fa-arrow-left"></i> Back
     </a>
     <PageTitle>Health Risk Assessment</PageTitle>
@@ -20,7 +25,7 @@
     else
     {
         var cate = new QuestionCategory();
-        <EditForm Model="Form" OnSubmit="@OnSubmit" class="form">
+        <EditForm Model="Form" OnValidSubmit="@OnSubmit" class="form">
             @foreach (var question in Form.Questions.OrderBy(e => e.Order))
             {
                     @if (question.QuestionCategory != cate.Category || question.QuestionCategoryDescription != cate.CategoryDescription)
@@ -39,11 +44,11 @@
                         }
                     }
                 <div class="form-group mb-2 mt-2">
-                    <div class="question">
+                    <div class="question" style="margin-right: 40%;">
                         <b>@question.QuestionText</b>
                         @if (question.QuestionType == QuestionType.SingleOpen || question.QuestionType == QuestionType.Single)
                         {
-                            <div class="row mt-1">
+                            <div class="row mt-1 ms-1" >
                                 @foreach (var answer in question.Answers.OrderBy(e => e.Order))
                                 {
                                     <div class="form-check col-6">
@@ -65,7 +70,7 @@
                         }
                         else if (question.QuestionType == QuestionType.MultipleOpen || question.QuestionType == QuestionType.Multiple)
                         {
-                            <div class="row mt-1">
+                            <div class="row mt-1 ms-1">
                                 @foreach (var answer in question.Answers.OrderBy(e => e.Order))
                                 {
                                     <div class="form-check col-6 pl-9">
@@ -84,7 +89,7 @@
                                 {
                                     @if (question.QuestionDataType == QuestionDataType.Boolean)
                                     {
-                                        <div class="form-check col-6 pl-9">
+                                        <div class="form-check col-6" style="padding-left: 41px;">
                                              <input
                                               name="@question.Id"
                                               value="@answer.Id"
@@ -97,7 +102,9 @@
                                     else if (question.QuestionDataType == QuestionDataType.Date)
                                     {
                                         <div class="form-group col-6">
-                                            <InputText id="@answer.Id"  @bind-Value="answer.Answer" class="form-control" />
+                                            <Input type="date" id="@answer.Id" value="@answer.Answer"
+                                             @onchange="@(e => DOBChanged(question, answer, e))"
+                                             class="form-control" />
                                         </div>
                                     }
                                     else
@@ -117,6 +124,10 @@
               <button type="submit" class="btn btn-primary">Export Report</button>
             </div>
         </EditForm>
+        <BlazoredToasts
+          Position="@ToastPosition.BottomRight"
+          Timeout="2"
+        />
     }
 </div>
 
@@ -161,7 +172,7 @@
     protected void OnSubmitForm(){
 
     }
-    protected void OnSubmit(){
+    protected async Task OnSubmit(){
       var allQuestion = Form!.Questions?.ToList();
       var textDateAnswer = allQuestion.Where(e=>e.QuestionType == QuestionType.Info || e.QuestionType == QuestionType.Open).SelectMany(q=>q.Answers).Where(a=>a.ExtraAnswer).Select(e=> new ResponseDetailEntity(){
         ExtraAnswer = e.Answer,
@@ -188,8 +199,8 @@
       Response.ResponseDetail = textDateAnswer.Concat(selectionAnswer).Concat(selectionOtherAnswer).ToList();
       Response.Form = Form;
       Response.IsSubmitted = true;
-      ResponseService.CreateResponse(Response);
-
+      await ResponseService.CreateResponse(Response);
+      toastService.ShowSuccess("Save form successfully");
 
     }
     private void HandleChange(QuestionEntity question, AnswerEntity answer, ChangeEventArgs e)
@@ -200,5 +211,9 @@
         }
       }
       answer.IsSelected = true;
+    }
+    private void DOBChanged(QuestionEntity question, AnswerEntity answer, ChangeEventArgs e)
+    {
+        answer.Answer = e.Value.ToString();
     }
 }

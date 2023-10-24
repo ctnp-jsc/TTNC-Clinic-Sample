@@ -16,6 +16,6 @@ public class UserService : IUserService
     public async Task<string?> GetCurrentUserAsync()
     {
         var state = await stateProvider.GetAuthenticationStateAsync();
-        return state.User?.FindFirst(ClaimTypes.Name)?.Value;
+        return state?.User?.Identity?.Name;
     }
 }

@@ -17,6 +17,7 @@ namespace Sample.Repositories
         {
             await _context.AddAsync(model, ct);
             await _context.SaveChangesAsync(ct);
+            // _context.Entry(model).State = EntityState.Added;
             return model;
         }
         public async Task<FormEntity?> GetFromDetail(string formId, CancellationToken ct = default)

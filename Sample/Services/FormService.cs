@@ -1,3 +1,4 @@
+using Sample.Entities;
 using DevExpress.Data.Entity;
 using DevExpress.DataAccess.Native;
 using DevExpress.DataAccess.Sql;
@@ -33,12 +34,13 @@ namespace Sample.Services
                     Id = form.Id,
                     Title = form.Title,
                     CreatedAt = form.CreatedAt,
+                    CreatedBy = form.CreatedBy,
                     Questions = form.Questions.ToList(),
                     LastEdited = maxRs == null ? form.CreatedAt : maxRs.CreatedAt,
                     FormStatus = maxRs == null ? FormStatus.FillOut : maxRs.IsSubmitted ? FormStatus.Submitted : FormStatus.SubmittedDraft
                 });
             }
-            return listFormView;
+            return listFormView.OrderByDescending(e=>e.CreatedAt).ToList();
         }
         public async Task<FormEntity?> GetFormDetail(string FormId, CancellationToken ct = default)
         {
@@ -136,9 +138,7 @@ namespace Sample.Services
         {
             var form = await Repository.GetFromDetail(FormId, ct);
             if (form != null){
-                form.DeletedBy = "";
-                await Repository.UpdateAsync(form, ct);
-                await UnitOfWork.SaveChangesAsync(ct);
+                await DeleteAsync(form, ct);
             }
         }
 
