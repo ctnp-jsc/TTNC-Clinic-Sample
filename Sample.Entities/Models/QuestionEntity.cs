@@ -26,11 +26,11 @@ namespace Sample.Entities.Models
         public string QuestionText { get; set; } = default!;
         public string? QuestionCategory { get; set; }
         public string? QuestionCategoryDescription { get; set; }
-        public string FormId { get; set; } = default!;
+        public string? FormId { get; set; }
         public int Order { get; set; }
         public bool IsMandatory { get; set; } = false;
         public QuestionType QuestionType { get; set; } = default!;
-        public FormEntity Form { get; set; } = default!;
+        public FormEntity? Form { get; set; }
         public QuestionDataType QuestionDataType { get; set; } = QuestionDataType.Text;
         public ICollection<AnswerEntity> Answers { get; set; } = default!;
         public DateTimeOffset CreatedAt { get; set; }
