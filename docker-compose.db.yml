@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  db:
+    image: 'mssql-custom'
+    build:
+      context: ./mssql
+      dockerfile: Dockerfile
+    environment:
+      ACCEPT_EULA: 'Y'
+      MSSQL_SA_PASSWORD: 'HelloWorld09@@'
+    ports:
+      - '1433:1433'

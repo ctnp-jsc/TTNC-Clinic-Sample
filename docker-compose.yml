@@ -1,10 +1,17 @@
 version: '3.4'
 
 services:
-  db:
-    image: 'mcr.microsoft.com/mssql/server:2022-latest'
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
     environment:
-      ACCEPT_EULA: 'Y'
-      MSSQL_SA_PASSWORD: 'HelloWorld09@@'
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db,1433;Database=HRM;User Id=sa;Password=HelloWorld09@@;TrustServerCertificate=True
+      - ConnectionStrings__Connection=XpoProvider=MSSqlServer;Server=localhost,1433;Database=HRM;User Id=sa;Password=HelloWorld09@@;TrustServerCertificate=True
     ports:
-      - '1433:1433'
+      - '5276:443'
+      - '5277:80'
+    depends_on:
+      db:
+        condition: service_started
