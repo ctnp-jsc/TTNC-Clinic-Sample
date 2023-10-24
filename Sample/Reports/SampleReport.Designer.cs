@@ -7,7 +7,7 @@ namespace Sample.Reports
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -89,19 +89,19 @@ namespace Sample.Reports
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
+            //
             // TopMargin
-            // 
+            //
             this.TopMargin.HeightF = 36.19444F;
             this.TopMargin.Name = "TopMargin";
-            // 
+            //
             // BottomMargin
-            // 
+            //
             this.BottomMargin.HeightF = 541.6667F;
             this.BottomMargin.Name = "BottomMargin";
-            // 
+            //
             // Detail
-            // 
+            //
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPanel3,
             this.xrRichText1,
@@ -112,9 +112,9 @@ namespace Sample.Reports
             this.xrLabel1});
             this.Detail.HeightF = 599.4861F;
             this.Detail.Name = "Detail";
-            // 
+            //
             // xrRichText1
-            // 
+            //
             this.xrRichText1.BackColor = System.Drawing.Color.Silver;
             this.xrRichText1.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
             this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(10.0001F, 350.9166F);
@@ -125,11 +125,11 @@ namespace Sample.Reports
             this.xrRichText1.StylePriority.UseBackColor = false;
             this.xrRichText1.StylePriority.UseFont = false;
             this.xrRichText1.StylePriority.UsePadding = false;
-            // 
+            //
             // xrPanel1
-            // 
+            //
             this.xrPanel1.BorderColor = System.Drawing.Color.Silver;
-            this.xrPanel1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrPanel1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPanel2,
@@ -148,9 +148,9 @@ namespace Sample.Reports
             this.xrPanel1.SizeF = new System.Drawing.SizeF(646.9999F, 113.4583F);
             this.xrPanel1.StylePriority.UseBorderColor = false;
             this.xrPanel1.StylePriority.UseBorders = false;
-            // 
+            //
             // xrLabel3
-            // 
+            //
             this.xrLabel3.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
             this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ExtraAnswer]")});
@@ -160,9 +160,9 @@ namespace Sample.Reports
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.SizeF = new System.Drawing.SizeF(343.0555F, 23F);
             this.xrLabel3.StylePriority.UseBorders = false;
-            // 
+            //
             // xrCheckBox10
-            // 
+            //
             this.xrCheckBox10.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox10].[Text])\n")});
@@ -174,9 +174,9 @@ namespace Sample.Reports
             this.xrCheckBox10.StylePriority.UseBorders = false;
             this.xrCheckBox10.StylePriority.UseFont = false;
             this.xrCheckBox10.Text = "Other";
-            // 
+            //
             // xrCheckBox9
-            // 
+            //
             this.xrCheckBox9.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox9].[Text])\n")});
@@ -188,9 +188,9 @@ namespace Sample.Reports
             this.xrCheckBox9.StylePriority.UseBorders = false;
             this.xrCheckBox9.StylePriority.UseFont = false;
             this.xrCheckBox9.Text = "Taiwanese";
-            // 
+            //
             // xrCheckBox8
-            // 
+            //
             this.xrCheckBox8.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox8].[Text])\n")});
@@ -202,9 +202,9 @@ namespace Sample.Reports
             this.xrCheckBox8.StylePriority.UseBorders = false;
             this.xrCheckBox8.StylePriority.UseFont = false;
             this.xrCheckBox8.Text = "Cantonese";
-            // 
+            //
             // xrCheckBox7
-            // 
+            //
             this.xrCheckBox7.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox7].[Text])\n")});
@@ -216,9 +216,9 @@ namespace Sample.Reports
             this.xrCheckBox7.StylePriority.UseBorders = false;
             this.xrCheckBox7.StylePriority.UseFont = false;
             this.xrCheckBox7.Text = "Mandarin";
-            // 
+            //
             // xrCheckBox6
-            // 
+            //
             this.xrCheckBox6.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox6.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox6].[Text])\n")});
@@ -230,9 +230,9 @@ namespace Sample.Reports
             this.xrCheckBox6.StylePriority.UseBorders = false;
             this.xrCheckBox6.StylePriority.UseFont = false;
             this.xrCheckBox6.Text = "Korean";
-            // 
+            //
             // xrCheckBox5
-            // 
+            //
             this.xrCheckBox5.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox5].[Text])\n")});
@@ -244,9 +244,9 @@ namespace Sample.Reports
             this.xrCheckBox5.StylePriority.UseBorders = false;
             this.xrCheckBox5.StylePriority.UseFont = false;
             this.xrCheckBox5.Text = "Spanish";
-            // 
+            //
             // xrCheckBox4
-            // 
+            //
             this.xrCheckBox4.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox4].[Text])\n")});
@@ -258,9 +258,9 @@ namespace Sample.Reports
             this.xrCheckBox4.StylePriority.UseBorders = false;
             this.xrCheckBox4.StylePriority.UseFont = false;
             this.xrCheckBox4.Text = "Vietnamese";
-            // 
+            //
             // xrCheckBox3
-            // 
+            //
             this.xrCheckBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox3].[Text])")});
@@ -272,9 +272,9 @@ namespace Sample.Reports
             this.xrCheckBox3.StylePriority.UseBorders = false;
             this.xrCheckBox3.StylePriority.UseFont = false;
             this.xrCheckBox3.Text = "English";
-            // 
+            //
             // xrLabel6
-            // 
+            //
             this.xrLabel6.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrLabel6.Multiline = true;
@@ -286,9 +286,9 @@ namespace Sample.Reports
             this.xrLabel6.StylePriority.UseTextAlignment = false;
             this.xrLabel6.Text = "What language do you prefer to speak?";
             this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
+            //
             // xrLabel5
-            // 
+            //
             this.xrLabel5.BackColor = System.Drawing.Color.Silver;
             this.xrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.Top;
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(10.0001F, 175.3472F);
@@ -302,18 +302,18 @@ namespace Sample.Reports
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             this.xrLabel5.Text = "Contact Preferences";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
+            //
             // xrTable1
-            // 
+            //
             this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(75.34721F, 101.125F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
             this.xrTable1.SizeF = new System.Drawing.SizeF(581.6528F, 74.22218F);
-            // 
+            //
             // xrTableRow1
-            // 
+            //
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell1,
             this.xrTableCell2,
@@ -321,10 +321,10 @@ namespace Sample.Reports
             this.xrTableCell4});
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.Weight = 1.78833251953125D;
-            // 
+            //
             // xrTableCell1
-            // 
-            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            //
+            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel7,
@@ -336,9 +336,9 @@ namespace Sample.Reports
             this.xrTableCell1.StylePriority.UsePadding = false;
             this.xrTableCell1.Text = "Name First";
             this.xrTableCell1.Weight = 2.0403103452527214D;
-            // 
+            //
             // xrLabel7
-            // 
+            //
             this.xrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[FirstName]")});
@@ -351,9 +351,9 @@ namespace Sample.Reports
             this.xrLabel7.StylePriority.UseTextAlignment = false;
             this.xrLabel7.Text = "First Name";
             this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
+            //
             // xrLabel4
-            // 
+            //
             this.xrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(5.340576E-05F, 3.051758E-05F);
             this.xrLabel4.Multiline = true;
@@ -365,9 +365,9 @@ namespace Sample.Reports
             this.xrLabel4.StylePriority.UseTextAlignment = false;
             this.xrLabel4.Text = "First Name";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
+            //
             // xrTableCell2
-            // 
+            //
             this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel9,
@@ -379,9 +379,9 @@ namespace Sample.Reports
             this.xrTableCell2.StylePriority.UsePadding = false;
             this.xrTableCell2.Text = "Last Name";
             this.xrTableCell2.Weight = 2.0324804848062605D;
-            // 
+            //
             // xrTableCell3
-            // 
+            //
             this.xrTableCell3.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell3.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel11,
@@ -393,9 +393,9 @@ namespace Sample.Reports
             this.xrTableCell3.StylePriority.UsePadding = false;
             this.xrTableCell3.Text = "DOB";
             this.xrTableCell3.Weight = 1.7152415871154365D;
-            // 
+            //
             // xrTableCell4
-            // 
+            //
             this.xrTableCell4.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell4.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrCheckBox1,
@@ -404,9 +404,9 @@ namespace Sample.Reports
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.StylePriority.UseBorders = false;
             this.xrTableCell4.Weight = 2.1332559503596493D;
-            // 
+            //
             // xrCheckBox1
-            // 
+            //
             this.xrCheckBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Gender])==\'MALE\'")});
@@ -419,9 +419,9 @@ namespace Sample.Reports
             this.xrCheckBox1.StylePriority.UsePadding = false;
             this.xrCheckBox1.StylePriority.UseTextAlignment = false;
             this.xrCheckBox1.Text = "Male";
-            // 
+            //
             // xrCheckBox2
-            // 
+            //
             this.xrCheckBox2.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Gender])==\'FEMALE\'\n")});
@@ -432,9 +432,9 @@ namespace Sample.Reports
             this.xrCheckBox2.SizeF = new System.Drawing.SizeF(73.3335F, 22.99999F);
             this.xrCheckBox2.StylePriority.UseBorders = false;
             this.xrCheckBox2.Text = "Female";
-            // 
+            //
             // xrLabel2
-            // 
+            //
             this.xrLabel2.Font = new DevExpress.Drawing.DXFont("Arial", 9F);
             this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 50.08335F);
             this.xrLabel2.Multiline = true;
@@ -445,9 +445,9 @@ namespace Sample.Reports
             this.xrLabel2.StylePriority.UsePadding = false;
             this.xrLabel2.Text = "Dear Member,\r\n\r\nAnswering the questions below helps us to find ways to help you t" +
     "o continue to feel good and improve your health.";
-            // 
+            //
             // xrLabel1
-            // 
+            //
             this.xrLabel1.Font = new DevExpress.Drawing.DXFont("Arial", 10F, DevExpress.Drawing.DXFontStyle.Bold);
             this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrLabel1.Multiline = true;
@@ -458,20 +458,20 @@ namespace Sample.Reports
             this.xrLabel1.StylePriority.UseTextAlignment = false;
             this.xrLabel1.Text = "HEALTH RISK ASSESSMENT FORM";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
+            //
             // responseId
-            // 
+            //
             this.responseId.Description = "ResponseId";
             this.responseId.Name = "responseId";
             this.responseId.ValueInfo = "158e762d-5040-4eb4-96c9-804f1364622a";
-            // 
+            //
             // calculatedField1
-            // 
+            //
             this.calculatedField1.DataMember = "Responses_1";
             this.calculatedField1.Name = "calculatedField1";
-            // 
+            //
             // sqlDataSource1
-            // 
+            //
             this.sqlDataSource1.ConnectionName = "Connection";
             this.sqlDataSource1.Name = "sqlDataSource1";
             table1.MetaSerializable = "<Meta X=\"30\" Y=\"30\" Width=\"125\" Height=\"283\" />";
@@ -490,9 +490,9 @@ namespace Sample.Reports
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             selectQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
-            // 
+            //
             // xrLabel8
-            // 
+            //
             this.xrLabel8.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(0.0002746582F, 3.051758E-05F);
             this.xrLabel8.Multiline = true;
@@ -504,9 +504,9 @@ namespace Sample.Reports
             this.xrLabel8.StylePriority.UseTextAlignment = false;
             this.xrLabel8.Text = "Last Name";
             this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
+            //
             // xrLabel9
-            // 
+            //
             this.xrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[LastName]")});
@@ -519,9 +519,9 @@ namespace Sample.Reports
             this.xrLabel9.StylePriority.UseTextAlignment = false;
             this.xrLabel9.Text = "First Name";
             this.xrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
+            //
             // xrLabel10
-            // 
+            //
             this.xrLabel10.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(3.051758E-05F, 3.051758E-05F);
             this.xrLabel10.Multiline = true;
@@ -533,9 +533,9 @@ namespace Sample.Reports
             this.xrLabel10.StylePriority.UseTextAlignment = false;
             this.xrLabel10.Text = "DOB";
             this.xrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
+            //
             // xrLabel11
-            // 
+            //
             this.xrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DOB]")});
@@ -548,11 +548,11 @@ namespace Sample.Reports
             this.xrLabel11.StylePriority.UseTextAlignment = false;
             this.xrLabel11.Text = "First Name";
             this.xrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
+            //
             // xrPanel2
-            // 
+            //
             this.xrPanel2.BorderColor = System.Drawing.Color.Silver;
-            this.xrPanel2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrPanel2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrPanel2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel12,
@@ -570,9 +570,9 @@ namespace Sample.Reports
             this.xrPanel2.SizeF = new System.Drawing.SizeF(646.9999F, 113.4583F);
             this.xrPanel2.StylePriority.UseBorderColor = false;
             this.xrPanel2.StylePriority.UseBorders = false;
-            // 
+            //
             // xrLabel12
-            // 
+            //
             this.xrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
             this.xrLabel12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ExtraAnswer]")});
@@ -582,9 +582,9 @@ namespace Sample.Reports
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel12.SizeF = new System.Drawing.SizeF(343.0555F, 23F);
             this.xrLabel12.StylePriority.UseBorders = false;
-            // 
+            //
             // xrCheckBox11
-            // 
+            //
             this.xrCheckBox11.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox10].[Text])\n")});
@@ -596,9 +596,9 @@ namespace Sample.Reports
             this.xrCheckBox11.StylePriority.UseBorders = false;
             this.xrCheckBox11.StylePriority.UseFont = false;
             this.xrCheckBox11.Text = "Other";
-            // 
+            //
             // xrCheckBox12
-            // 
+            //
             this.xrCheckBox12.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox9].[Text])\n")});
@@ -610,9 +610,9 @@ namespace Sample.Reports
             this.xrCheckBox12.StylePriority.UseBorders = false;
             this.xrCheckBox12.StylePriority.UseFont = false;
             this.xrCheckBox12.Text = "Taiwanese";
-            // 
+            //
             // xrCheckBox13
-            // 
+            //
             this.xrCheckBox13.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox8].[Text])\n")});
@@ -624,9 +624,9 @@ namespace Sample.Reports
             this.xrCheckBox13.StylePriority.UseBorders = false;
             this.xrCheckBox13.StylePriority.UseFont = false;
             this.xrCheckBox13.Text = "Cantonese";
-            // 
+            //
             // xrCheckBox14
-            // 
+            //
             this.xrCheckBox14.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox14.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox7].[Text])\n")});
@@ -638,9 +638,9 @@ namespace Sample.Reports
             this.xrCheckBox14.StylePriority.UseBorders = false;
             this.xrCheckBox14.StylePriority.UseFont = false;
             this.xrCheckBox14.Text = "Mandarin";
-            // 
+            //
             // xrCheckBox15
-            // 
+            //
             this.xrCheckBox15.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox15.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox6].[Text])\n")});
@@ -652,9 +652,9 @@ namespace Sample.Reports
             this.xrCheckBox15.StylePriority.UseBorders = false;
             this.xrCheckBox15.StylePriority.UseFont = false;
             this.xrCheckBox15.Text = "Korean";
-            // 
+            //
             // xrCheckBox16
-            // 
+            //
             this.xrCheckBox16.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox16.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox5].[Text])\n")});
@@ -666,9 +666,9 @@ namespace Sample.Reports
             this.xrCheckBox16.StylePriority.UseBorders = false;
             this.xrCheckBox16.StylePriority.UseFont = false;
             this.xrCheckBox16.Text = "Spanish";
-            // 
+            //
             // xrCheckBox17
-            // 
+            //
             this.xrCheckBox17.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox17.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox4].[Text])\n")});
@@ -680,9 +680,9 @@ namespace Sample.Reports
             this.xrCheckBox17.StylePriority.UseBorders = false;
             this.xrCheckBox17.StylePriority.UseFont = false;
             this.xrCheckBox17.Text = "Vietnamese";
-            // 
+            //
             // xrCheckBox18
-            // 
+            //
             this.xrCheckBox18.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Upper([Lang])==Upper([ReportItems.xrCheckBox3].[Text])")});
@@ -694,9 +694,9 @@ namespace Sample.Reports
             this.xrCheckBox18.StylePriority.UseBorders = false;
             this.xrCheckBox18.StylePriority.UseFont = false;
             this.xrCheckBox18.Text = "English";
-            // 
+            //
             // xrLabel13
-            // 
+            //
             this.xrLabel13.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrLabel13.Multiline = true;
@@ -708,11 +708,11 @@ namespace Sample.Reports
             this.xrLabel13.StylePriority.UseTextAlignment = false;
             this.xrLabel13.Text = "What language do you prefer to speak?";
             this.xrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
+            //
             // xrPanel3
-            // 
+            //
             this.xrPanel3.BorderColor = System.Drawing.Color.Silver;
-            this.xrPanel3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrPanel3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrPanel3.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrCheckBox22,
@@ -725,9 +725,9 @@ namespace Sample.Reports
             this.xrPanel3.SizeF = new System.Drawing.SizeF(646.9999F, 125.6529F);
             this.xrPanel3.StylePriority.UseBorderColor = false;
             this.xrPanel3.StylePriority.UseBorders = false;
-            // 
+            //
             // xrLabel14
-            // 
+            //
             this.xrLabel14.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrLabel14.Multiline = true;
@@ -739,9 +739,9 @@ namespace Sample.Reports
             this.xrLabel14.StylePriority.UseTextAlignment = false;
             this.xrLabel14.Text = "I. What health conditions do you currently have?";
             this.xrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
+            //
             // xrCheckBox19
-            // 
+            //
             this.xrCheckBox19.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox19.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HasAsthma]")});
@@ -751,9 +751,9 @@ namespace Sample.Reports
             this.xrCheckBox19.SizeF = new System.Drawing.SizeF(100F, 23F);
             this.xrCheckBox19.StylePriority.UseBorders = false;
             this.xrCheckBox19.Text = "Asthma";
-            // 
+            //
             // xrCheckBox20
-            // 
+            //
             this.xrCheckBox20.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox20.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HasCOPD]")});
@@ -763,9 +763,9 @@ namespace Sample.Reports
             this.xrCheckBox20.SizeF = new System.Drawing.SizeF(100F, 23F);
             this.xrCheckBox20.StylePriority.UseBorders = false;
             this.xrCheckBox20.Text = "COPD";
-            // 
+            //
             // xrCheckBox21
-            // 
+            //
             this.xrCheckBox21.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox21.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HasKidney]")});
@@ -775,9 +775,9 @@ namespace Sample.Reports
             this.xrCheckBox21.SizeF = new System.Drawing.SizeF(327.2779F, 23F);
             this.xrCheckBox21.StylePriority.UseBorders = false;
             this.xrCheckBox21.Text = "Kidney diease or kidney failure";
-            // 
+            //
             // xrCheckBox22
-            // 
+            //
             this.xrCheckBox22.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrCheckBox22.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HasDiabetes]")});
@@ -787,9 +787,9 @@ namespace Sample.Reports
             this.xrCheckBox22.SizeF = new System.Drawing.SizeF(327.2779F, 23F);
             this.xrCheckBox22.StylePriority.UseBorders = false;
             this.xrCheckBox22.Text = "Diabetes or high blood sugar";
-            // 
+            //
             // SampleReport
-            // 
+            //
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,
             this.BottomMargin,
@@ -804,6 +804,7 @@ namespace Sample.Reports
             this.Margins = new DevExpress.Drawing.DXMargins(80F, 80F, 36.19444F, 541.6667F);
             this.PageHeight = 1169;
             this.PageWidth = 827;
+            this.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4;
             this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
             new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.responseId, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {

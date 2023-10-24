@@ -8,7 +8,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionStrings__DefaultConnection=Server=db,1433;Database=HRM;User Id=sa;Password=HelloWorld09@@;TrustServerCertificate=True
-      - ConnectionStrings__Connection=XpoProvider=MSSqlServer;Server=localhost,1433;Database=HRM;User Id=sa;Password=HelloWorld09@@;TrustServerCertificate=True
+      - ConnectionStrings__Connection=XpoProvider=MSSqlServer;Server=db,1433;Database=HRM;User Id=sa;Password=HelloWorld09@@;TrustServerCertificate=True
     ports:
       - '5276:443'
       - '5277:80'

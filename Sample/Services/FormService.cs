@@ -1,4 +1,8 @@
+using DevExpress.Data.Entity;
+using DevExpress.DataAccess.Native;
+using DevExpress.DataAccess.Sql;
 using Sample.Entities.Models;
+using Sample.Extensions;
 using Sample.Reports;
 using Sample.Repositories;
 using Sample.ViewModels;
@@ -8,9 +12,12 @@ namespace Sample.Services
     public sealed class FormService : BaseCrudEntityService<FormEntity, IFormRepository>
     {
         private readonly IResponseRepository _reponseRepository;
+        private readonly IConfiguration _configuration;
+
         public FormService(IServiceProvider serviceProvider, ILogger<FormService> logger) : base(serviceProvider, logger)
         {
             _reponseRepository = serviceProvider.GetRequiredService<IResponseRepository>();
+            _configuration = serviceProvider.GetRequiredService<IConfiguration>();
         }
         public async Task<List<FormViewModel>> GetListForm(CancellationToken ct = default)
         {
@@ -141,7 +148,7 @@ namespace Sample.Services
             var response = responses.OrderByDescending(e => e.Version).FirstOrDefault();
             if (response != null)
             {
-                var report = new SampleReport();
+                var report = new SampleReport(_configuration.GetReportConnection());
                 report.Parameters["responseId"].Value = response.Id;
                 await report.ExportToPdfAsync(stream, null, ct);
             }

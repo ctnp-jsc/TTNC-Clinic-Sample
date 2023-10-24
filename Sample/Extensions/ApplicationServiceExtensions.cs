@@ -44,8 +44,6 @@ public static class ApplicationServiceExtensions
         .AddScoped<IResponseRepository, ResponseRepository>();
 
     public static IServiceCollection AddServices(this IServiceCollection @this) => @this
-        .AddScoped<IConnectionProviderFactory, ConnectionProviderFactory>()
-        .AddScoped<IConnectionProviderService, ConnectionProviderService>()
         .AddScoped<IUnitOfWork, UnitOfWork<EntityDbContext>>()
         .AddScoped<IUserService, UserService>()
         .AddScoped<FormService>()
