@@ -106,8 +106,8 @@ namespace Sample.Services
                         new(){Answer = "Vietnamese"},
                         new(){Answer = "Spanish"},
                         new(){Answer = "Korean"},
-                        new(){Answer = "Madarin"},
-                        new(){Answer = "Catonese"},
+                        new(){Answer = "Mandarin"},
+                        new(){Answer = "Cantonese"},
                         new(){Answer = "Taiwanese"},
                         new(){Answer = "Other", ExtraAnswer = true, Order = 1},
                     }
